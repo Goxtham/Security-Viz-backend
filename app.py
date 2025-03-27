@@ -16,7 +16,7 @@ import uuid
 app = Flask(__name__)
 CORS(app, resources={
     r"/*": {
-        "origins": ["http://localhost:8080", "https://goxtham.github.io"],
+        "origins": ["https://securityviz.site", "http://localhost:8080"],
         "methods": ["GET", "POST", "OPTIONS"],
         "allow_headers": ["Content-Type", "X-Session-ID", "Accept", "Origin"],
         "supports_credentials": True
@@ -199,10 +199,10 @@ def login():
             "session_id": session_id
         })
         
-        # Set CORS headers
+        # Set CORS headers with dynamic origin support
         response.headers.add('Access-Control-Allow-Credentials', 'true')
-        origin = request.headers.get('Origin')
-        if origin in ["http://localhost:8080", "https://goxtham.github.io"]:
+        origin = request.headers.get('Origin', '')
+        if origin in ['https://securityviz.site', 'http://localhost:8080']:
             response.headers.add('Access-Control-Allow-Origin', origin)
         
         return response, 200
