@@ -14,14 +14,7 @@ import bcrypt
 import uuid
 
 app = Flask(__name__)
-CORS(app, resources={
-    r"/*": {
-        "origins": ["https://securityviz.site", "http://localhost:8080"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "X-Session-ID", "Accept", "Origin"],
-        "supports_credentials": True
-    }
-})
+CORS(app, supports_credentials=True)  # Enable CORS for all routes
 app.secret_key = os.urandom(24)  # Generate a random secret key for session management
 
 # Load environment variables
