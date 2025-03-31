@@ -12,7 +12,6 @@ import certifi
 from datetime import datetime, timedelta
 import bcrypt
 import uuid
-from bson.pipeline import Pipeline
 
 app = Flask(__name__)
 CORS(app, resources={
